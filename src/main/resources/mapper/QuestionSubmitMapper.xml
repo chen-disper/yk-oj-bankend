@@ -16,11 +16,4 @@
             <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
             <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
     </resultMap>
-
-    <sql id="Base_Column_List">
-        id,language,code,
-        judgeInfo,status,questionId,
-        userId,createTime,updateTime,
-        isDelete
-    </sql>
 </mapper>

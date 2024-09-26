@@ -21,12 +21,5 @@
             <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
             <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
     </resultMap>
-
-    <sql id="Base_Column_List">
-        id,title,content,
-        tags,answer,submitNum,
-        acceptedNum,judgeCase,judgeConfig,
-        thumbNum,favourNum,userId,
-        createTime,updateTime,isDelete
-    </sql>
+    
 </mapper>
