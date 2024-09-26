@@ -1,10 +1,6 @@
 package com.yk.ykojbanked.model.vo;
 
 import cn.hutool.json.JSONUtil;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.yk.ykojbanked.model.dto.question.JudgeConfig;
 import com.yk.ykojbanked.model.entity.Question;
 import lombok.Data;

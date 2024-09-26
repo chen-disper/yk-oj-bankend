@@ -3,8 +3,7 @@ package com.yk.ykojbanked.model.dto.questionsubmit;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+
 
 /**
  * 创建请求
