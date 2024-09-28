@@ -11,6 +11,7 @@ import com.yk.ykojbanked.constant.UserConstant;
 import com.yk.ykojbanked.exception.BusinessException;
 import com.yk.ykojbanked.exception.ThrowUtils;
 import com.yk.ykojbanked.model.dto.question.*;
+import com.yk.ykojbanked.model.dto.user.UserQueryRequest;
 import com.yk.ykojbanked.model.entity.Question;
 import com.yk.ykojbanked.model.entity.User;
 import com.yk.ykojbanked.model.vo.QuestionVO;
@@ -33,7 +34,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/question")
 @Slf4j
-@Api(value = "题目接口")
 public class QuestionController {
 
     @Resource
@@ -53,7 +53,6 @@ public class QuestionController {
      * @return
      */
     @PostMapping("/add")
-    @ApiOperation(value = "创建题目")
     public BaseResponse<Long> addQuestion(@RequestBody QuestionAddRequest questionAddRequest, HttpServletRequest request) {
         if (questionAddRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
@@ -65,11 +64,11 @@ public class QuestionController {
             question.setTags(JSONUtil.toJsonStr(tags));
         }
         List<JudgeCase> judgeCase = questionAddRequest.getJudgeCase();
-        if(judgeCase != null){
+        if (judgeCase != null) {
             question.setJudgeCase(JSONUtil.toJsonStr(judgeCase));
         }
         JudgeConfig judgeConfig = questionAddRequest.getJudgeConfig();
-        if(judgeConfig != null){
+        if (judgeConfig != null) {
             question.setJudgeConfig(JSONUtil.toJsonStr(judgeConfig));
         }
         //
@@ -92,7 +91,6 @@ public class QuestionController {
      * @return
      */
     @PostMapping("/delete")
-    @ApiOperation(value = "删除题目")
     public BaseResponse<Boolean> deleteQuestion(@RequestBody DeleteRequest deleteRequest, HttpServletRequest request) {
         if (deleteRequest == null || deleteRequest.getId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
@@ -117,7 +115,6 @@ public class QuestionController {
      * @return
      */
     @PostMapping("/update")
-    @ApiOperation(value = "更新题目")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     public BaseResponse<Boolean> updateQuestion(@RequestBody QuestionUpdateRequest questionUpdateRequest) {
         if (questionUpdateRequest == null || questionUpdateRequest.getId() <= 0) {
@@ -130,11 +127,11 @@ public class QuestionController {
             question.setTags(JSONUtil.toJsonStr(tags));
         }
         List<JudgeCase> judgeCase = questionUpdateRequest.getJudgeCase();
-        if(judgeCase != null){
+        if (judgeCase != null) {
             question.setJudgeCase(JSONUtil.toJsonStr(judgeCase));
         }
         JudgeConfig judgeConfig = questionUpdateRequest.getJudgeConfig();
-        if(judgeConfig != null){
+        if (judgeConfig != null) {
             question.setJudgeConfig(JSONUtil.toJsonStr(judgeConfig));
         }
         // 参数校验
@@ -154,7 +151,6 @@ public class QuestionController {
      * @return
      */
     @GetMapping("/get/vo")
-    @ApiOperation(value = "根据题目id获取题目")
     public BaseResponse<QuestionVO> getQuestionVOById(long id, HttpServletRequest request) {
         if (id <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
@@ -167,13 +163,12 @@ public class QuestionController {
     }
 
     /**
-     * 分页获取列表（仅管理员）
+     * 分页获取题目列表（仅管理员）
      *
      * @param questionQueryRequest
      * @return
      */
     @PostMapping("/list/page")
-    @ApiOperation(value = "分页获取题目列表(管理员)")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     public BaseResponse<Page<Question>> listQuestionByPage(@RequestBody QuestionQueryRequest questionQueryRequest) {
         long current = questionQueryRequest.getCurrent();
@@ -184,7 +179,7 @@ public class QuestionController {
     }
 
     /**
-     * 分页获取列表（封装类）
+     * 分页获取题目列表（封装类）
      *
      * @param questionQueryRequest
      * @param request
@@ -245,11 +240,11 @@ public class QuestionController {
             question.setTags(JSONUtil.toJsonStr(tags));
         }
         List<JudgeCase> judgeCase = questionEditRequest.getJudgeCase();
-        if(judgeCase != null){
+        if (judgeCase != null) {
             question.setJudgeCase(JSONUtil.toJsonStr(judgeCase));
         }
         JudgeConfig judgeConfig = questionEditRequest.getJudgeConfig();
-        if(judgeConfig != null){
+        if (judgeConfig != null) {
             question.setJudgeConfig(JSONUtil.toJsonStr(judgeConfig));
         }
         // 参数校验

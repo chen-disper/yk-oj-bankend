@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public enum QuestionSubmitLanguageEnum {
 
     JAVA("java", "java"),
-    CPLUSPLUS("C++", "C++");
+    CPLUSPLUS("c++", "c++");
 
     private final String text;
 

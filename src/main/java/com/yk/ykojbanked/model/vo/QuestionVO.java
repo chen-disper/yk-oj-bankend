@@ -1,6 +1,7 @@
 package com.yk.ykojbanked.model.vo;
 
 import cn.hutool.json.JSONUtil;
+import com.yk.ykojbanked.model.dto.question.JudgeCase;
 import com.yk.ykojbanked.model.dto.question.JudgeConfig;
 import com.yk.ykojbanked.model.entity.Question;
 import lombok.Data;
@@ -50,7 +51,7 @@ public class QuestionVO implements Serializable {
     /**
      * 判题用例（json 数组）
      */
-    private String judgeCase;
+    private List<JudgeCase> judgeCase;
 
     /**
      * 判题配置
@@ -125,6 +126,8 @@ public class QuestionVO implements Serializable {
         List<String> tagList = JSONUtil.toList(question.getTags(), String.class);
         questionVO.setTags(tagList);
         String judgeConfigList = question.getJudgeConfig();
+        String judgeCase = question.getJudgeCase();
+        questionVO.setJudgeCase(JSONUtil.toList(judgeCase,JudgeCase.class));
         questionVO.setJudgeConfig(JSONUtil.toBean(judgeConfigList, JudgeConfig.class));
         return questionVO;
     }
